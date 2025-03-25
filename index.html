@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XNBH0W1HE8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-XNBH0W1HE8');
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loading...</title>
+  <link rel="stylesheet" href="https://assets.cosmicchutney.space/css/common.css" />
+  <script>
+    window.pageConfig = {
+      title: "CosmicChutney - DIG Utility",
+      iframeUrl: "https://dig-utility.pages.dev/",
+      headerTitle: "DIG utility"
+    };
+  </script>
+  <script src="https://assets.cosmicchutney.space/js/common.js" defer></script>
+</head>
+<body>
+  <div class="header">
+    <img src="/cosmicchutney.webp" alt="Cosmic Chutney Logo" class="logo" />
+    <span id="headerTitle">Cosmic Chutney</span>
+  </div>
+
+  <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+  <div id="menu-container"></div>
+
+  <div class="content-wrapper">
+    <div class="content">
+      <iframe id="pageFrame" class="iframe-container" title="Tool iframe"></iframe>
+    </div>
+    <div class="ad-sidebar">Ad Space</div>
+  </div>
+
+  <div class="footer">
+    © 2025 CosmicChutney. All Rights Reserved. |
+    <a href="#" onclick="openModal('aboutModal')" style="color: white; text-decoration: none; margin: 0 10px;">About Us</a> |
+    <a href="#" onclick="openModal('contactModal')" style="color:white; margin:0 10px;">Contact Us</a> |
+    <a href="#" onclick="openModal('ideaModal')" style="color:white; margin:0 10px;">Ideas?</a>
+  </div>
+
+  <!-- Load common modals -->
+<div id="modal-container"></div>
+
+
+</body>
+</html>
