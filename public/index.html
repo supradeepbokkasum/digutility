@@ -132,27 +132,37 @@
       return types[typeCode] || `TYPE${typeCode}`;
     }
 
-    async function runQuery() {
-      const domain = document.getElementById("domain").value.trim();
-      const type = document.getElementById("type").value;
-      const resultBox = document.getElementById("result");
-      const digBox = document.getElementById("digCmd");
+async function runQuery() {
+  const domain = document.getElementById("domain").value.trim();
+  const type = document.getElementById("type").value;
+  const resultBox = document.getElementById("result");
+  const digBox = document.getElementById("digCmd");
 
-      if (!domain) {
-        alert("Please enter a domain.");
-        return;
-      }
+  // Basic domain name validation (doesn't cover every edge case)
+  const domainPattern = /^(?!:\/\/)(?=.{1,253}$)((?!-)[A-Za-z0-9-]{1,63}(?<!-)\.)+[A-Za-z]{2,}$/;
 
-      digBox.textContent = `$ dig ${domain} ${type}`;
+  if (!domain) {
+    alert("❗ Please enter a domain.");
+    return;
+  }
 
-      try {
-        const res = await fetch(`/api?domain=${domain}&type=${type}`);
-        const data = await res.json();
-        resultBox.textContent = parseDNSResult(data, domain, type);
-      } catch (e) {
-        resultBox.textContent = "❌ Error fetching DNS data.";
-      }
-    }
+  if (!domainPattern.test(domain)) {
+    alert("❗ Please enter a valid domain name (e.g. example.com).");
+    return;
+  }
+
+  digBox.textContent = `$ dig ${domain} ${type}`;
+  resultBox.textContent = "⏳ Looking up...";
+
+  try {
+    const res = await fetch(`/api?domain=${domain}&type=${type}`);
+    const data = await res.json();
+    resultBox.textContent = parseDNSResult(data, domain, type);
+  } catch (e) {
+    resultBox.textContent = "❌ Error fetching DNS data.";
+  }
+}
+
   </script>
 </body>
 </html>
